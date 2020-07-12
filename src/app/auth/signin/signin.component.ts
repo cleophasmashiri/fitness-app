@@ -18,8 +18,6 @@ export class SigninComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
     });
-
-  
     this.loginForm.statusChanges.subscribe(r => console.log(r));
   }
 

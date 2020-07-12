@@ -15,6 +15,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { WelcomeComponent } from './welcome/welcome.component';
 import { StopTrainingComponent } from './training/current-training/stop-training.component';
 import { AuthService } from './auth/auth.service';
+import { BpmProcessModule } from './bpm-process/bpm-process.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { AuthService } from './auth/auth.service';
     RouterModule,
     AuthModule,
     TrainingModule,
+    BpmProcessModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
