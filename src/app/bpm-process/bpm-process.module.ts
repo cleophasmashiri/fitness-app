@@ -16,6 +16,7 @@ import { TrafficProcessModule } from './forms/trafficProcess/traffic-process.mod
 import { MaterialModule } from '../material-module/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TaskViewComponent } from './task-view/task-view.component';
+import { AuthGuard } from '../auth/store/auth.guard';
 
 @NgModule({
   declarations: [ProcesslistComponent,
@@ -24,7 +25,8 @@ import { TaskViewComponent } from './task-view/task-view.component';
     StartProcessComponent,
     GenericForm,
     NewProcessComponent,
-    TaskViewComponent,],
+    TaskViewComponent],
+  
   imports: [
     CommonModule,
     RouterModule,
@@ -36,6 +38,6 @@ import { TaskViewComponent } from './task-view/task-view.component';
     MaterialModule,
     FlexLayoutModule
   ],
-  providers: [CamundaRestService]
+  providers: [CamundaRestService, AuthGuard]
 })
 export class BpmProcessModule { }

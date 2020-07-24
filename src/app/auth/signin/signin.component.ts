@@ -15,17 +15,17 @@ export class SigninComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
     });
-    this.loginForm.statusChanges.subscribe(r => console.log(r));
   }
 
   onSubmit() {
     this.authSvc.login({
-      email: this.loginForm.value.email,
-      password: this.loginForm.value.password
-     });
+      username: this.loginForm.value.email,
+      password: this.loginForm.value.password,
+      groups: null
+     }).subscribe(r => r);
   }
 
 }

@@ -23,7 +23,6 @@ export class GenericForm implements OnChanges {
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
     for (let propName in changes) {
-      console.log(propName);
       if (propName === 'formKey' && changes[propName].currentValue != null) {
         this.loadForm(changes[propName].currentValue);
       }
@@ -31,8 +30,6 @@ export class GenericForm implements OnChanges {
   }
 
   loadForm(formKey: String): void {
-    console.log(this.viewContainerRef);
-    console.log(formKey);
     this.setRootViewContainerRef(this.viewContainerRef);
     this.addDynamicComponent(formKey);
   }
@@ -42,8 +39,6 @@ export class GenericForm implements OnChanges {
   }
 
   public addDynamicComponent(formKey: String) {
-    console.log(TrafficProcess)
-    console.log(formKey)
     const factory = this.factoryResolver.resolveComponentFactory(TrafficProcess[formKey+'Component'])
     const component = factory.create(this.rootViewContainer.parentInjector)
 

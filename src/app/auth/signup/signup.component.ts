@@ -15,10 +15,10 @@ export class SignupComponent implements OnInit {
   }
 
   submit(form: NgForm) {
-   this.authSvc.registerUser({
-    email: form.value.email,
-    password: form.value.password
-   });
+  //  this.authSvc.registerUser({
+  //   username: form.value.email,
+  //   password: form.value.password
+  //  });
   }
 
 }

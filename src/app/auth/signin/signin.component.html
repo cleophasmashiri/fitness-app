@@ -2,9 +2,9 @@
 <section>
     <form [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" (ngSubmit)="onSubmit()" >
         <mat-form-field>
-            <input type="email" matInput placeholder="Your Email" formControlName="email" >
-            <mat-hint>Enter your email</mat-hint>
-            <mat-error>Invalid email</mat-error>
+            <input type="text" matInput placeholder="Your username" formControlName="email" >
+            <mat-hint>Enter your username</mat-hint>
+            <mat-error>Invalid username</mat-error>
         </mat-form-field>
         <mat-form-field>
             <input type="password" matInput placeholder="Your Password" formControlName="password" >

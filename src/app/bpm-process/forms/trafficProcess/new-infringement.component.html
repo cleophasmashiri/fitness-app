@@ -30,6 +30,10 @@
                         <mat-error *ngIf="infringementNotes.hasError('required')">Infringement Notes Required
                         </mat-error>
                     </mat-form-field>
+                    <div style="margin-bottom: 10px;">
+                        <label for="image1">Image 1</label>
+                        <input (change)="handleFileInput($event.target.files)" name="image1" type="file" placeholder="Upload Image" required>
+                    </div>
                   
                     <button type="submit" mat-raised-button color="primary"
                         [disabled]="!startNewProcess.form.valid">Submit</button>

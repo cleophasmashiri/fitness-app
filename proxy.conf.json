@@ -1,6 +1,6 @@
 {
   "/engine-rest/*": {
-    "target": "http://localhost:8080/",
+    "target": "https://infringement-api.herokuapp.com/",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"

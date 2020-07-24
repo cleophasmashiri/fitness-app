@@ -13,7 +13,7 @@ import { InfringementType } from '../../schemas/infringement-type';
 export class DriverInfringementComponent extends CompleteTaskComponent {
 
   submitted:boolean = false;
-  model = new Infringement('', InfringementType.Other,'', '', '', '', '', '');
+  model = new Infringement('', InfringementType.Other,'', '', '', '', '', '', '');
   driverChoices = [{name: 'Nominate Another Driver/Make Representation/Go To Court', value: 'other'}, {name: 'Submit Proof Of Payment', value: 'Pay'}];
 
   constructor(route: ActivatedRoute,

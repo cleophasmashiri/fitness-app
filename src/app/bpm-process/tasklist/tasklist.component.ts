@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { CamundaRestService } from '../camunda-rest.service';
 import { Task } from '../schemas/Task';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tasklist',
@@ -14,26 +16,30 @@ export class TasklistComponent implements OnInit {
   taskId: String;
   formKey: String;
 
+  groups$: Observable<string[]>;
+
   displayedColumns: string[] = ['name', 'assignee', 'created'];
 
   constructor(
     private camundaRestService: CamundaRestService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute, private authService: AuthService) {
 
   }
 
   ngOnInit() {
-    this.getTasks();
-    if (this.route.params != null) {
-      this.route.params.subscribe(params => {
-        if (params['id'] != null) {
-          this.taskId = params['id'];
-          this.getFormKey();
-        } else {
-          this.getTasks();
-        }
-      });
-    }
+    this.groups$ = this.authService.currentGroups$;
+    this.groups$.subscribe(groups => {
+      if (this.route.params != null) {
+        this.route.params.subscribe(params => {
+          if (params['id'] != null) {
+            this.taskId = params['id'];
+            this.getFormKey();
+          } else {
+            this.getTasks(groups);
+          }
+        });
+      }
+    });
   }
 
   getFormKey(): void {
@@ -42,12 +48,22 @@ export class TasklistComponent implements OnInit {
       .subscribe(formKey => this.formKey = formKey.key);
   }
 
-  getTasks(): void {
-    this.camundaRestService
-      .getTasks()
+  getTasks(groups: string[]): void {
+    if(groups && groups.indexOf('camunda BPM Administrators')>-1) {
+      this.camundaRestService
+      .getTasksByGroup('trafficAdmin')
       .subscribe(tasks => {
-        console.log('tasks', tasks);
-        this.tasks = tasks;});
+        this.tasks = tasks;
+      });
+    } else {
+      this.authService.currentUser$
+      .subscribe(user => {
+        this.camundaRestService
+        .getTasksByAssignee(user)
+        .subscribe(tasks => {
+          this.tasks = tasks;
+        });
+      });
+    }
   }
-
 }

@@ -9,13 +9,13 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing-module';
 import { RouterModule } from '@angular/router';
 import { AuthModule } from './auth/auth.module';
-import { TrainingModule } from './training/training.module';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { StopTrainingComponent } from './training/current-training/stop-training.component';
 import { AuthService } from './auth/auth.service';
 import { BpmProcessModule } from './bpm-process/bpm-process.module';
+import { reducers } from './app.reducer';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -23,8 +23,7 @@ import { BpmProcessModule } from './bpm-process/bpm-process.module';
     HomeComponent,
     HeaderComponent,
     SidenavListComponent,
-    WelcomeComponent,
-    StopTrainingComponent
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -34,11 +33,10 @@ import { BpmProcessModule } from './bpm-process/bpm-process.module';
     AppRoutingModule,
     RouterModule,
     AuthModule,
-    TrainingModule,
-    BpmProcessModule
-  ],
+    BpmProcessModule,
+    StoreModule.forRoot(reducers)
+  ],  
   providers: [AuthService],
-  bootstrap: [AppComponent],
-  entryComponents: [StopTrainingComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

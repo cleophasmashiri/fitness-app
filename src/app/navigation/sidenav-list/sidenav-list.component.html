@@ -1,4 +1,8 @@
 <mat-nav-list>
+    <a *ngIf="isAuthenticated" (click)="close()" mat-list-item routerLink="/process/tasklist">
+        <mat-icon>face</mat-icon>
+        <span class="nav-caption">Tasks</span>
+    </a>
     <a *ngIf="!isAuthenticated" (click)="close()" mat-list-item routerLink="/signup">
         <mat-icon>face</mat-icon>
         <span class="nav-caption">Signup</span>
@@ -7,8 +11,8 @@
         <mat-icon>input</mat-icon>
         <span class="nav-caption">Login</span>
     </a>
-    <a *ngIf="isAuthenticated" (click)="close()" mat-list-item routerLink="/training">
-        <mat-icon>fitness_center</mat-icon>
-        <span class="nav-caption">Training</span>
+    <a *ngIf="isAuthenticated" (click)="logout()">
+        <mat-icon>input</mat-icon>
+        <span class="nav-caption">Logout</span>
     </a>
 </mat-nav-list>

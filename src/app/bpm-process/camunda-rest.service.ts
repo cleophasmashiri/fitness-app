@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProcessDefinition } from './schemas/ProcessDefinition';
 import { Task } from './schemas/Task';
+import { AuthService } from '../auth/auth.service';
+import { Group } from './schemas/Group';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,11 +19,35 @@ export class CamundaRestService {
   constructor(private http: HttpClient) {
   }
 
-  getTasks(): Observable<Task[]> {
+  getTasks(assignee: string): Observable<Task[]> {
+    //const endpoint = `${this.engineRestUrl}task?assignee=${assignee}&sortBy=created&sortOrder=desc&maxResults=10`;
     const endpoint = `${this.engineRestUrl}task?sortBy=created&sortOrder=desc&maxResults=10`;
     return this.http.get<any>(endpoint).pipe(
       tap(form => this.log(`fetched tasks`)),
       catchError(this.handleError('getTasks', []))
+    );
+  }
+
+  getTasksByAssignee(assignee: string): Observable<Task[]> {
+    const endpoint = `${this.engineRestUrl}task?assignee=${assignee}&sortBy=created&sortOrder=desc&maxResults=10`;
+    return this.http.get<any>(endpoint).pipe(
+      tap(form => this.log(`fetched tasks`)),
+      catchError(this.handleError('getTasks', []))
+    );
+  }
+  getTasksByGroup(group: string): Observable<Task[]> {
+    const endpoint = `${this.engineRestUrl}task?candidateGroup=${group}&sortBy=created&sortOrder=desc&maxResults=10`;
+    return this.http.get<any>(endpoint).pipe(
+      tap(form => this.log(`fetched tasks`)),
+      catchError(this.handleError('getTasks', []))
+    );
+  }
+
+  getGroups(username: string): Observable<string[]> {
+    const endpoint = `${this.engineRestUrl}identity/groups?userId=${username}`;
+    return this.http.get<any>(endpoint).pipe(
+      tap(group => this.log(`fetched groups`)),
+      catchError(this.handleError('getGroups', []))
     );
   }
 
