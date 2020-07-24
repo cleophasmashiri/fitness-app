@@ -12,8 +12,8 @@ import { GenericForm } from '../generic-form.component';
   styleUrls: ['./start-process.component.css']
 })
 export class StartProcessComponent implements OnInit {
-  private processDefinitionKey: String = null;
-  private formKey: String = null;
+  private processDefinitionKey: string = null;
+  private formKey: string = null;
   private rootViewContainer = null;
 
   constructor(private route: ActivatedRoute,
@@ -24,7 +24,7 @@ export class StartProcessComponent implements OnInit {
   ngOnInit() {
     if (this.route.params != null) {
       this.route.params.subscribe(params => {
-        this.processDefinitionKey = params['processdefinitionkey'];
+        this.processDefinitionKey = params.processdefinitionkey;
         this.loadTaskKey();
       });
     }
@@ -33,7 +33,7 @@ export class StartProcessComponent implements OnInit {
   loadTaskKey(): void {
     this.camundaRestService.getProcessDefinitionTaskKey(this.processDefinitionKey)
       .subscribe(formKey => {
-        this.formKey = formKey.key
+        this.formKey = formKey.key;
       });
   }
 }

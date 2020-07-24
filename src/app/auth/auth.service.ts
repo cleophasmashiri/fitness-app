@@ -15,7 +15,7 @@ export class AuthService {
     private currentUserSubject: BehaviorSubject<UserData>;
     public currentUser$: Observable<string>;
     public currentGroups$: Observable<string[]>;
-    public isAuth$: Observable<boolean>; 
+    public isAuth$: Observable<boolean>;
     public isStaff$: Observable<boolean>;
 
     // this.linkedDevices$ = this.store.pipe(
@@ -32,26 +32,26 @@ export class AuthService {
     initAuthListener() {
         this.currentUser$ = this.store.pipe(
             select(fromRoot.getUsername)
-        ); 
+        );
         this.currentGroups$ = this.store.pipe(
             select(fromRoot.getGroups)
         );
-        
+
         this.isStaff$ = this.store.pipe(
             select(fromRoot.getGroups)
-        ).pipe(map(groups => groups && groups.indexOf('camunda BPM Administrators')>-1));
+        ).pipe(map(groups => groups && groups.indexOf('camunda BPM Administrators') > -1));
 
         this.isAuth$ = this.store.pipe(
             select(fromRoot.getIsAuth)
         );
 
         this.currentUser$.subscribe(user => {
-            if(!user) {
-                this.router.navigate(['/login']); 
+            if (!user) {
+                this.router.navigate(['/login']);
             } else {
                 this.handleAuthentication(user)
                 .subscribe(groups => {
-                    this.router.navigate(['/process/tasklist']); 
+                    this.router.navigate(['/process/tasklist']);
                 });
             }
         });
@@ -83,10 +83,10 @@ export class AuthService {
         const endpoint = `${this.engineRestUrl}identity/groups?userId=${username}`;
         return this.http.get<any>(endpoint).pipe(
             tap(groups => {
-                if(groups && groups.groups) {
+                if (groups && groups.groups) {
                    const mappedGroups = groups.groups.map(g => g.name);
                    this.store.dispatch(new Auth.SetGroups(mappedGroups));
-                   localStorage.setItem('currentUser', JSON.stringify({username: username, groups: mappedGroups}));
+                   localStorage.setItem('currentUser', JSON.stringify({username, groups: mappedGroups}));
                    return mappedGroups;
                 }
                 this.store.dispatch(new Auth.SetGroups(null));
@@ -108,7 +108,7 @@ export class AuthService {
         localStorage.removeItem('currentUser');
         this.store.dispatch(new Auth.SetGroups(undefined));
         this.store.dispatch(new Auth.SetAuthenticated(undefined));
-        this.router.navigate(['/login']); 
+        this.router.navigate(['/login']);
     }
 
     registerUser(user: UserData) {
@@ -116,6 +116,6 @@ export class AuthService {
             password: user.password,
             authenticatedUserPassword: user.password,
             username: user.username
-        })
+        });
     }
 }

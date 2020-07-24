@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class MainComponent implements OnInit {
 
-  links = [{name: 'Tasks', url:'/process/tasklist'}]
+  links = [{name: 'Tasks', url: '/process/tasklist'}];
 
   activeLink = this.links[0];
 
@@ -27,10 +27,10 @@ export class MainComponent implements OnInit {
     this.isStaff$
     .subscribe(isStaff => {
       this.isStaff = isStaff;
-      if(isStaff) {
-        this.links = [{name: 'Create Infringement', url: '/process/startprocess/trafficProcess'}, {name: 'Tasks', url:'/process/tasklist'} ];
+      if (isStaff) {
+        this.links = [{name: 'Create Infringement', url: '/process/startprocess/trafficProcess'}, {name: 'Tasks', url: '/process/tasklist'} ];
       } else {
-        this.links = [{name: 'Tasks', url:'/process/tasklist'} ];
+        this.links = [{name: 'Tasks', url: '/process/tasklist'} ];
       }
     });
   }
@@ -38,5 +38,5 @@ export class MainComponent implements OnInit {
   constructor(private authService: AuthService) {
 
   }
- 
+
 }

@@ -1,4 +1,4 @@
-import { InfringementType } from './infringement-type'
+import { InfringementType } from './infringement-type';
 export class Infringement {
 
   constructor(

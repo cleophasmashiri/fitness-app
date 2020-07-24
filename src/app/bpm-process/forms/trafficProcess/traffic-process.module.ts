@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NewInfringementComponent } from './new-infringement.component';
 import { DriverInfringementComponent } from './driver-infringement.component';
 import { TrafficAdminInfringementComponent } from './traffic-admin-infringement.component';
@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
   imports: [FormsModule, CommonModule, MaterialModule, FlexLayoutModule, RouterModule],
   exports: [NewInfringementComponent, DriverInfringementComponent, TrafficAdminInfringementComponent]
 })
-export class TrafficProcessModule {}
+export class TrafficProcessModule { }
 
 export { NewInfringementComponent } from './new-infringement.component';
 export { DriverInfringementComponent } from './driver-infringement.component';

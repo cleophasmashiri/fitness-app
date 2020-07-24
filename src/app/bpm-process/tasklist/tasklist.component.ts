@@ -13,8 +13,8 @@ import { Observable } from 'rxjs';
 })
 export class TasklistComponent implements OnInit {
   tasks: Task[] = null;
-  taskId: String;
-  formKey: String;
+  taskId: string;
+  formKey: string;
 
   groups$: Observable<string[]>;
 
@@ -31,8 +31,8 @@ export class TasklistComponent implements OnInit {
     this.groups$.subscribe(groups => {
       if (this.route.params != null) {
         this.route.params.subscribe(params => {
-          if (params['id'] != null) {
-            this.taskId = params['id'];
+          if (params.id != null) {
+            this.taskId = params.id;
             this.getFormKey();
           } else {
             this.getTasks(groups);
@@ -49,7 +49,7 @@ export class TasklistComponent implements OnInit {
   }
 
   getTasks(groups: string[]): void {
-    if(groups && groups.indexOf('camunda BPM Administrators')>-1) {
+    if (groups && groups.indexOf('camunda BPM Administrators') > -1) {
       this.camundaRestService
       .getTasksByGroup('trafficAdmin')
       .subscribe(tasks => {

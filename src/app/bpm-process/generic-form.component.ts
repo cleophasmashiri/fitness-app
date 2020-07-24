@@ -11,10 +11,10 @@ import * as TrafficProcess from './forms/trafficProcess/traffic-process.module';
   styleUrls: []
 })
 export class GenericForm implements OnChanges {
-  @ViewChild('dynamic', { read: ViewContainerRef, static: true }) viewContainerRef: ViewContainerRef
+  @ViewChild('dynamic', { read: ViewContainerRef, static: true }) viewContainerRef: ViewContainerRef;
 
-  @Input() formKey:String = null;
-  @Input() taskId:String = null;
+  @Input() formKey: string = null;
+  @Input() taskId: string = null;
   private rootViewContainer = null;
   private myAddonModule = null;
 
@@ -22,26 +22,26 @@ export class GenericForm implements OnChanges {
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
-    for (let propName in changes) {
+    for (const propName in changes) {
       if (propName === 'formKey' && changes[propName].currentValue != null) {
         this.loadForm(changes[propName].currentValue);
       }
     }
   }
 
-  loadForm(formKey: String): void {
+  loadForm(formKey: string): void {
     this.setRootViewContainerRef(this.viewContainerRef);
     this.addDynamicComponent(formKey);
   }
 
   public setRootViewContainerRef(viewContainerRef) {
-    this.rootViewContainer = viewContainerRef
+    this.rootViewContainer = viewContainerRef;
   }
 
-  public addDynamicComponent(formKey: String) {
-    const factory = this.factoryResolver.resolveComponentFactory(TrafficProcess[formKey+'Component'])
-    const component = factory.create(this.rootViewContainer.parentInjector)
+  public addDynamicComponent(formKey: string) {
+    const factory = this.factoryResolver.resolveComponentFactory(TrafficProcess[formKey + 'Component']);
+    const component = factory.create(this.rootViewContainer.parentInjector);
 
-    this.rootViewContainer.insert(component.hostView)
+    this.rootViewContainer.insert(component.hostView);
   }
 }

@@ -8,8 +8,8 @@ import { CamundaRestService } from '../camunda-rest.service';
 })
 export class NewProcessComponent implements OnInit {
   private fileToUpload: File = null;
-  private SUCCESS: boolean = false;
-  
+  private SUCCESS = false;
+
   constructor(private camundaRestService: CamundaRestService) { }
 
   ngOnInit() {

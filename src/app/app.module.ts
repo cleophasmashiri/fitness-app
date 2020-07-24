@@ -35,7 +35,7 @@ import { StoreModule } from '@ngrx/store';
     AuthModule,
     BpmProcessModule,
     StoreModule.forRoot(reducers)
-  ],  
+  ],
   providers: [AuthService],
   bootstrap: [AppComponent]
 })

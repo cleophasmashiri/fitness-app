@@ -9,8 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TaskViewComponent implements OnInit {
 
-  taskId: String;
-  formKey: String;
+  taskId: string;
+  formKey: string;
 
   constructor(
     private camundaRestService: CamundaRestService,
@@ -21,10 +21,10 @@ export class TaskViewComponent implements OnInit {
   ngOnInit() {
     if (this.route.params != null) {
       this.route.params.subscribe(params => {
-        if (params['id'] != null) {
-          this.taskId = params['id'];
+        if (params.id != null) {
+          this.taskId = params.id;
           this.getFormKey();
-        } 
+        }
       });
     }
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CamundaRestService } from '../camunda-rest.service'
+import { CamundaRestService } from '../camunda-rest.service';
 
 @Component({
   selector: 'app-processlist',

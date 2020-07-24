@@ -26,7 +26,7 @@ import { AuthGuard } from '../auth/store/auth.guard';
     GenericForm,
     NewProcessComponent,
     TaskViewComponent],
-  
+
   imports: [
     CommonModule,
     RouterModule,

@@ -14,13 +14,13 @@ const httpOptions = {
 
 @Injectable()
 export class CamundaRestService {
-  private engineRestUrl = '/engine-rest/'
+  private engineRestUrl = '/engine-rest/';
 
   constructor(private http: HttpClient) {
   }
 
   getTasks(assignee: string): Observable<Task[]> {
-    //const endpoint = `${this.engineRestUrl}task?assignee=${assignee}&sortBy=created&sortOrder=desc&maxResults=10`;
+    // const endpoint = `${this.engineRestUrl}task?assignee=${assignee}&sortBy=created&sortOrder=desc&maxResults=10`;
     const endpoint = `${this.engineRestUrl}task?sortBy=created&sortOrder=desc&maxResults=10`;
     return this.http.get<any>(endpoint).pipe(
       tap(form => this.log(`fetched tasks`)),
@@ -51,7 +51,7 @@ export class CamundaRestService {
     );
   }
 
-  getTaskFormKey(taskId: String): Observable<any> {
+  getTaskFormKey(taskId: string): Observable<any> {
     const endpoint = `${this.engineRestUrl}task/${taskId}/form`;
     return this.http.get<any>(endpoint).pipe(
       tap(form => this.log(`fetched taskform`)),
@@ -59,7 +59,7 @@ export class CamundaRestService {
     );
   }
 
-  getVariablesForTask(taskId: String, variableNames: String): Observable<any> {
+  getVariablesForTask(taskId: string, variableNames: string): Observable<any> {
     const endpoint = `${this.engineRestUrl}task/${taskId}/form-variables?variableNames=${variableNames}`;
     return this.http.get<any>(endpoint).pipe(
       tap(form => this.log(`fetched variables`)),
@@ -67,7 +67,7 @@ export class CamundaRestService {
     );
   }
 
-  postCompleteTask(taskId: String, variables: Object): Observable<any> {
+  postCompleteTask(taskId: string, variables: any): Observable<any> {
     const endpoint = `${this.engineRestUrl}task/${taskId}/complete`;
     return this.http.post<any>(endpoint, variables).pipe(
       tap(tasks => this.log(`posted complete task`)),

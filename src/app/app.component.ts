@@ -9,13 +9,13 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent implements OnInit {
 
   constructor(private authService: AuthService) {}
-  
+  title = 'fitness-app';
+
   ngOnInit(): void {
     this.authService.initAuthListener();
   }
-  title = 'fitness-app';
 
   onToggle() {
-    
+
   }
 }
